@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="16dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/title"
+        android:layout_marginTop="5sp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/title"
@@ -11,8 +23,106 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20sp"
-        android:text="@string/data"
+        android:text="@string/your_data"
         android:textSize="28sp"
         android:textStyle="bold"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:layout_marginTop="5sp"
+        tools:ignore="SmallSp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rate1"
+        android:layout_marginTop="5sp"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/rate1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:layout_marginTop="75sp"
+        android:text="@string/your_data"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/date1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/rate1"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:layout_marginTop="75sp"
+        android:text="@string/your_data"
+        android:textSize="20sp"
+        android:textAlignment="textEnd"/>
+
+    <TextView
+        android:id="@+id/rate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rate1"
+        android:layout_marginTop="20sp"
+        android:text="@string/your_data"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/date2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/rate2"
+        app:layout_constraintTop_toBottomOf="@id/rate1"
+        android:layout_marginTop="20sp"
+        android:text="@string/your_data"
+        android:textSize="20sp"
+        android:textAlignment="textEnd"/>
+
+    <TextView
+        android:id="@+id/rate3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rate2"
+        android:layout_marginTop="20sp"
+        android:text="@string/your_data"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/date3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/rate3"
+        app:layout_constraintTop_toBottomOf="@id/rate2"
+        android:layout_marginTop="20sp"
+        android:text="@string/your_data"
+        android:textSize="20sp"
+        android:textAlignment="textEnd"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rate3"
+        android:layout_marginTop="5sp"
+        tools:ignore="SmallSp" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rate3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

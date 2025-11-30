@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">pr22_2_KMA</string>
+    <string name="app_name">Центр валют</string>
     <string name="take_money">Выберите курс валют</string>
     <string name="login">Авторизация</string>
     <string name="login_ed">Введите логин</string>
@@ -9,6 +9,7 @@
     <string name="data">Выбор данных</string>
     <string name="enter_data">Введите сумму</string>
     <string name="next">Перейти</string>
+    <string name="your_data">Пользовательские данные</string>
     <string-array name="rates_array">
         <item>USD</item>
         <item>EUR</item>

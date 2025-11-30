@@ -2,9 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/log"
+        android:layout_marginTop="5sp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/log"
@@ -16,6 +26,24 @@
         android:text="@string/login"
         android:textSize="28sp"
         android:textStyle="bold"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/log"
+        android:layout_marginTop="5sp"
+        tools:ignore="SmallSp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/login"
+        android:layout_marginTop="5sp"
+        tools:ignore="SmallSp" />
 
     <EditText
         android:id="@+id/login"
@@ -36,6 +64,15 @@
         android:layout_marginTop="10sp"
         android:hint="@string/pass_ed"
         android:textSize="20sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password"
+        android:layout_marginTop="5sp"
+        tools:ignore="SmallSp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_enter"

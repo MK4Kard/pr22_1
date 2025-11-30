@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -33,6 +34,7 @@ class EnterFragment : Fragment() {
         val spinner = view.findViewById(R.id.spinner) as Spinner
         val spin1 = view.findViewById(R.id.sp1) as Spinner
         val spin2 = view.findViewById(R.id.sp2) as Spinner
+        var data = view.findViewById(R.id.ed_data) as EditText
         val enter_button = view.findViewById(R.id.next_btn) as Button
 
         ArrayAdapter.createFromResource(
@@ -48,8 +50,16 @@ class EnterFragment : Fragment() {
 
         enter_button.setOnClickListener {
             if(spinner.selectedItem.toString() != spin1.selectedItem.toString() && spinner.selectedItem.toString() != spin2.selectedItem.toString() && spin2.selectedItem.toString() != spin1.selectedItem.toString()){
+                var ratefragment = RateFragment()
+                var bundle = Bundle()
+                bundle.putString("rate", spinner.selectedItem.toString())
+                bundle.putString("r1", spin1.selectedItem.toString())
+                bundle.putString("r2", spin2.selectedItem.toString())
+                bundle.putString("data", data.text.toString())
+                ratefragment.arguments = bundle
+
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, RateFragment())
+                    .replace(R.id.fragment_container, ratefragment)
                     .addToBackStack(null)
                     .commit()
             }
