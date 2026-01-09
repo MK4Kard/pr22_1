@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20sp"
-        android:text="@string/data"
+        android:text="Изменение данных"
         android:textSize="28sp"
         android:textStyle="bold"/>
 
@@ -126,25 +126,12 @@
         tools:ignore="SmallSp" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_btn"
-        android:layout_width="match_parent"
-        android:layout_height="60sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/next_btn"
-        android:layout_marginBottom="10dp"
-        android:text="Добавить"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:background="@drawable/button"/>
-
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/next_btn"
         android:layout_width="match_parent"
         android:layout_height="60sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/next"
+        android:text="Сохранить"
         android:textAllCaps="false"
         android:textSize="20sp"
         android:textColor="@color/white"

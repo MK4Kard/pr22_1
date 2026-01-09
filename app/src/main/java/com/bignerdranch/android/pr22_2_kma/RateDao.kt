@@ -1,18 +1,25 @@
 package com.bignerdranch.android.pr22_2_kma
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface RateDao {
-    @Query("SELECT * FROM rates")
-    fun getRates(): LiveData<List<Rate>>
+    @Query("SELECT * FROM 'rates'")
+    fun getAll(): List<RateEntity>
 
     @Insert
-    fun addRate(rate: Rate)
+    fun insert(vararg rates: RateEntity)
 
-    @Query("DELETE FROM rates WHERE rateId = :id")
-    fun deleteRate(id:Int)
+    @Delete
+    fun deleteRate(entity: RateEntity)
+
+    @Query("SELECT * FROM rates WHERE id = :id LIMIT 1")
+    suspend fun getById(id: Int): RateEntity?
+
+    @Update
+    suspend fun update(rate: RateEntity)
 }

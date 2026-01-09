@@ -10,6 +10,7 @@
     <string name="enter_data">Введите сумму</string>
     <string name="next">Перейти</string>
     <string name="your_data">Пользовательские данные</string>
+    <string name="delete">Удалить</string>
     <string-array name="rates_array">
         <item>USD</item>
         <item>EUR</item>
@@ -20,4 +21,6 @@
         <item>AED</item>
         <item>BYN</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

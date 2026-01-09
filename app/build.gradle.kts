@@ -16,6 +16,10 @@ android {
         versionName = "1.0"
     }
 
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+
     buildFeatures {
         compose = true
     }

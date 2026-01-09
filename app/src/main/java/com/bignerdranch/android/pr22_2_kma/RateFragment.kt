@@ -6,25 +6,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.TextView
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.ComposeView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
-import androidx.room.util.TableInfo.Column
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.Volley
 import com.android.volley.toolbox.StringRequest
 import org.json.JSONObject
+import com.google.android.material.snackbar.Snackbar
 
 class RateFragment : Fragment() {
-    lateinit var rt1: TextView
-    lateinit var rt2: TextView
-    lateinit var rt3: TextView
-    lateinit var result1: TextView
-    lateinit var result2: TextView
-    lateinit var result3: TextView
+    lateinit var recycler: RecyclerView
+    lateinit var delete: AppCompatButton
+    lateinit var change: AppCompatButton
+    val adapter = RateAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,64 +33,46 @@ class RateFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_rate, container, false)
 
-        rt1 = view.findViewById<TextView>(R.id.rate1)
-        rt2= view.findViewById<TextView>(R.id.rate2)
-        rt3 = view.findViewById<TextView>(R.id.rate3)
-        result1 = view.findViewById<TextView>(R.id.date1)
-        result2 = view.findViewById<TextView>(R.id.date2)
-        result3 = view.findViewById<TextView>(R.id.date3)
+        recycler = view.findViewById<RecyclerView>(R.id.recycler)
+        delete = view.findViewById<AppCompatButton>(R.id.delete_btn)
+        change = view.findViewById<AppCompatButton>(R.id.change_btn)
+
+        val database = RateDb.getDb(requireContext())
+        adapter.data = database.rateDao().getAll()
+
+        recycler.adapter = adapter
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+
+        delete.setOnClickListener {
+            try {
+                val database = RateDb.getDb(requireContext())
+                database.rateDao().deleteRate(adapter.selectedRate)
+                adapter.data = database.rateDao().getAll()
+            }
+            catch (e:Exception){
+                Snackbar.make(view, "Ошибка удаления", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
+        change.setOnClickListener {
+            try {
+                val database = RateDb.getDb(requireContext())
+
+                val bundle = Bundle()
+                bundle.putInt("ch_rate", adapter.selectedRate.id)
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, ChangeFragment().apply {
+                        arguments = bundle
+                    })
+                    .addToBackStack(null)
+                    .commit()
+            }
+            catch (e:Exception){
+                Snackbar.make(view, "Выберите данное", Snackbar.LENGTH_SHORT).show()
+            }
+        }
 
         return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val composeView = view.findViewById<ComposeView>(R.id.composeView)
-
-        composeView.setContent {
-            MainScreen()
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        val rate = arguments?.getString("rate")
-        val r1 = arguments?.getString("r1")
-        val r2 = arguments?.getString("r2")
-        val data = arguments?.getString("data")
-
-        getResult(rate.toString(), r1.toString(), r2.toString(), data!!.toInt())
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun getResult(rate: String, rate1: String, rate2: String, dt: Int) {
-        var key = "69ee2ac8b12138def24d1a2925f69ed8"
-        var url="https://currate.ru/api/?get=rates&pairs="+rate+rate1+","+rate+rate2+"&key="+key;
-        val queue = Volley.newRequestQueue(requireContext())
-        val stringRequest = StringRequest(
-            Request.Method.GET,
-            url,
-            {
-                response->
-                val obj = JSONObject(response)
-                val data = obj.getJSONObject("data")
-
-                val value1 = data.getString(rate + rate1)
-                val value2 = data.getString(rate + rate2)
-
-                rt1.text = rate
-                rt2.text = rate1
-                rt3.text = rate2
-                result1.text = dt.toString()
-                result2.text = (value1.toDouble()*dt).toString()
-                result3.text = (value2.toDouble() * dt).toString()
-            },
-            {
-                Log.d("MyLog","Volley error: $it")
-            }
-        )
-        queue.add(stringRequest)
     }
 }
